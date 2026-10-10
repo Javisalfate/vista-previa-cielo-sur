@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista previa | Tour astronómico en el Valle del Elqui | Astroturismo Cielo Sur, Alcohuaz</title>
+<meta name="description" content="Tours de observación por telescopio en Alcohuaz, Valle del Elqui. Miras el cielo con tus propios ojos, sin pantallas. En español y en inglés. Reserva por WhatsApp.">
+<!-- VISTA PREVIA: Google no debe mostrar esta página -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0D1A2A">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/icono-celular-apple-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Spectral:wght@300;400&display=swap">
+<link rel="stylesheet" href="assets/css/estilos.css">
+<link rel="stylesheet" href="assets/css/vista-previa.css">
+</head>
+<body>
+<p class="vista-previa-franja" role="note">Versión en desarrollo — vista previa</p>
+
+<!-- Ícono de WhatsApp (se dibuja una vez y se reutiliza en todos los botones) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icono-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></symbol>
+</svg>
+
+<header class="barra">
+  <a class="barra__logo" href="#inicio"><img src="assets/img/logo-compacto.svg" alt="Astroturismo Cielo Sur" width="130" height="47"></a>
+  <!-- Selector de idioma. La versión en inglés no se alcanzó a hacer: por eso EN tiene data-pendiente y no lleva a ninguna parte.
+       Cuando exista la carpeta en/ con la página en inglés, borrar data-pendiente de este enlace y del que está en el pie. -->
+  <nav class="idioma" aria-label="Idioma">
+    <a href="./" lang="es" aria-current="page">ES</a>
+    <a href="en/" lang="en" hreflang="en" data-pendiente title="Versión en inglés: pendiente">EN</a>
+  </nav>
+</header>
+
+<main id="inicio">
+
+  <!-- ============ PORTADA ============ -->
+  <section class="portada">
+    <!-- FOTO DE PORTADA. Hoy es una IMAGEN DE EJEMPLO dibujada (portada-ejemplo.svg).
+         Cuando llegue la foto de Mako: guardarla como assets/img/portada.webp, cambiar el nombre del archivo
+         en las dos líneas de abajo, describir la foto en alt y borrar el aviso "Imagen de ejemplo". -->
+    <figure class="portada__foto enfocando">
+      <img class="portada__foto-borrosa" src="assets/img/portada-ejemplo.svg" alt="" aria-hidden="true">
+      <img class="portada__foto-nitida" src="assets/img/portada-ejemplo.svg" alt="Imagen de ejemplo: un observatorio a lo lejos bajo un cielo lleno de estrellas" fetchpriority="high">
+    </figure>
+
+    <div class="portada__contenido">
+      <img class="portada__logo" src="assets/img/logo-vertical.svg" alt="Astroturismo Cielo Sur" width="207" height="186">
+
+      <!-- Eslogan de Mako: en español grande y en inglés más pequeño debajo -->
+      <h1>Sin pantallas, solo las estrellas</h1>
+      <p class="portada__eslogan-en" lang="en">No screens, just the stars</p>
+
+      <!-- Botón de acción principal: baja al formulario de reserva (que después lleva a WhatsApp) -->
+      <a class="portada__reserva" id="reserva-portada" href="#formulario-reserva">Reserva</a>
+    </div>
+
+    <p class="portada__aviso"><span class="pendiente">Imagen de ejemplo: aquí va la foto de Mako</span></p>
+  </section>
+
+  <!-- ============ ENTRADA + SIGNIFICADO: la noche en tres momentos ============
+       Basado en cómo Mako describía su tour en su página antigua: primero a simple vista con puntero láser, después por el telescopio.
+       Las imágenes son DIBUJOS DE EJEMPLO (assets/img/ejemplos); se reemplazan por fotos reales de Mako. -->
+  <section class="entrada" id="la-noche">
+    <div class="contenedor">
+      <p class="entrada__presentacion">Tours de observación por telescopio en Alcohuaz</p>
+      <h2>Una noche para aprender a mirar</h2>
+
+      <!-- Cada momento tiene su propia forma (no son tarjetas iguales):
+           1 imagen ancha, 2 imagen dentro de un círculo como el ocular, 3 la Cruz del Sur dibujada sobre el fondo -->
+      <ol class="momentos">
+        <li class="momento momento--ancho">
+          <figure class="momento__foto">
+            <img src="assets/img/ejemplos/momento-1-simple-vista.svg" alt="Un grupo mira el cielo de noche mientras el guía apunta una estrella con un puntero láser" width="1200" height="900" loading="lazy">
+            <figcaption class="aviso-ejemplo">Imagen de ejemplo</figcaption>
+          </figure>
+          <div class="momento__texto">
+            <span class="momento__numero" aria-hidden="true">1</span>
+            <h3>A simple vista</h3>
+            <p>Con un puntero láser, aprendes a encontrar las estrellas y constelaciones del cielo del sur.</p>
+          </div>
+        </li>
+        <li class="momento momento--ocular">
+          <figure class="momento__ocular">
+            <span class="momento__circulo"><img src="assets/img/ejemplos/momento-2-telescopio.svg" alt="Una persona mira por el ocular de un telescopio, con la cúpula del observatorio al fondo" width="1200" height="900" loading="lazy"></span>
+            <figcaption class="aviso-ejemplo">Imagen de ejemplo</figcaption>
+          </figure>
+          <div class="momento__texto">
+            <span class="momento__numero" aria-hidden="true">2</span>
+            <h3>Por el telescopio</h3>
+            <p>Lo que viste como un punto se abre en el ocular: cúmulos, nebulosas, la Luna y los planetas, según la temporada.</p>
+          </div>
+        </li>
+        <li class="momento momento--cielo">
+          <div class="momento__texto">
+            <span class="momento__numero" aria-hidden="true">3</span>
+            <h3>Lo que te llevas</h3>
+            <p>La próxima vez que mires al cielo, vas a saber dónde está la Cruz del Sur.</p>
+          </div>
+          <img class="momento__cruz" src="assets/img/ejemplos/cruz-del-sur-dibujo.svg" alt="Dibujo de la Cruz del Sur y los Punteros" width="640" height="500" loading="lazy">
+        </li>
+      </ol>
+
+      <p class="entrada__pasado">Algunas de las luces que vas a ver salieron de allá hace miles de años. Esa noche, vas a estar mirando el pasado.</p>
+      <p class="entrada__pendiente"><span class="pendiente">[Mako confirma que el tour sigue así]</span></p>
+    </div>
+  </section>
+
+  <!-- ============ LO QUE PASA ESA NOCHE: la experiencia en concreto ============
+       Datos tomados de la página antigua de Mako (observatoriocielosur.cl, 2013-2017), porque aún no entrega información actualizada.
+       Mako tiene que confirmar que siguen vigentes antes de publicar. -->
+  <section class="seccion experiencia" id="experiencia">
+    <div class="contenedor">
+      <h2>Lo que pasa esa noche</h2>
+
+      <figure class="experiencia__foto">
+        <img src="assets/img/ejemplos/cupulas-noche.svg" alt="Las dos cúpulas del observatorio bajo el cielo estrellado" width="1200" height="750" loading="lazy">
+        <figcaption class="aviso-ejemplo">Imagen de ejemplo</figcaption>
+      </figure>
+
+      <p class="experiencia__datos"><strong>60 a 90 minutos</strong>, en grupos de <strong>2 a 9 personas</strong>, para que todos tengan tiempo en el ocular.</p>
+      <p>Dos cúpulas de observación y un telescopio <strong>Celestron de 11 pulgadas</strong> con oculares Televue.</p>
+
+      <h3 class="experiencia__subtitulo">Qué se ve por el telescopio</h3>
+      <!-- Dibujos de cómo se ve cada objeto por el ocular. En el celular se deslizan con el dedo -->
+      <ul class="oculares">
+          <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-luna.svg" alt="La Luna vista por el telescopio, con sus cráteres" width="400" height="400" loading="lazy"></span><figcaption>La Luna y sus cráteres</figcaption></figure></li>
+          <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-saturno.svg" alt="Saturno con sus anillos, visto por el telescopio" width="400" height="400" loading="lazy"></span><figcaption>Saturno y sus anillos</figcaption></figure></li>
+          <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-jupiter.svg" alt="Júpiter con sus bandas y cuatro lunas, visto por el telescopio" width="400" height="400" loading="lazy"></span><figcaption>Júpiter y sus lunas</figcaption></figure></li>
+          <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-cumulo.svg" alt="Un cúmulo globular: miles de estrellas juntas, visto por el telescopio" width="400" height="400" loading="lazy"></span><figcaption>Un cúmulo globular, el del logo</figcaption></figure></li>
+          <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-nebulosa.svg" alt="Una nebulosa vista por el telescopio, como una nube suave" width="400" height="400" loading="lazy"></span><figcaption>Una nebulosa</figcaption></figure></li>
+      </ul>
+      <p class="nota">Dibujos de cómo se ven por el ocular: en tonos suaves, como los ve el ojo.</p>
+
+      <div class="temporadas">
+        <div class="temporada">
+          <h4>En verano</h4>
+          <p>Orión, Tauro, Can Mayor, Can Menor y Cetus</p>
+        </div>
+        <div class="temporada">
+          <h4>En invierno</h4>
+          <p>Escorpión, Sagitario, Lira, Libra, Capricornio y la Cruz del Sur</p>
+        </div>
+      </div>
+      <p class="nota">Lo que se ve depende de la época del año y de la luna. De septiembre a marzo hay más noches despejadas.</p>
+
+      <ul class="experiencia__lista">
+        <li>No necesitas saber de Astronomía: el tour está pensado para quien mira el cielo por primera vez.</li>
+        <li>Niños desde los 5 años, por la duración y las explicaciones.</li>
+        <li>En español o en inglés.</li>
+      </ul>
+
+      <p class="experiencia__pendiente"><span class="pendiente">[Datos de la página antigua de Mako: él confirma que siguen vigentes]</span></p>
+
+      <!-- Llamado a la acción después de presentar la experiencia: baja al formulario de reserva -->
+      <div class="experiencia__cta">
+        <p>¿Te imaginas ahí?</p>
+        <a class="boton-reserva" href="#formulario-reserva">Reserva</a>
+        <p class="experiencia__garantia">Si el cielo no está en condiciones, se hace devolución del 100%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA: de la reserva a la noche, paso a paso (para reducir la incertidumbre) ============
+       Distancias: ~120 km y ~2 h 30 desde La Serena (Chile.travel); 13 km desde Pisco Elqui (BBC Sky at Night).
+       Ubicación del mapa y los botones: la ficha de Google "Observatorio Cielo Sur" (-30.2301642, -70.4916899). Mako confirma el punto de encuentro. -->
+  <section class="seccion seccion--dia" id="como-funciona">
+    <div class="contenedor">
+      <h2>Cómo funciona</h2>
+      <p class="como__bajada">De la reserva a la noche, paso a paso.</p>
+
+      <ol class="pasos-noche">
+        <li class="paso">
+          <span class="paso__num" aria-hidden="true">1</span>
+          <div class="paso__texto">
+            <h3>Me escribes con tu fecha y número de personas</h3>
+            <p>Desde el botón <a class="enlace" href="#formulario-reserva">Reserva</a>. Te respondo para confirmar si hay cupo. <span class="pendiente">[en cuánto tiempo responde Mako]</span></p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="paso__num" aria-hidden="true">2</span>
+          <div class="paso__texto">
+            <h3>Pagas y tu cupo queda reservado</h3>
+            <p>El pago es del 100% por adelantado, porque los grupos son reducidos y el cupo queda reservado solo para ti. <span class="pendiente">[medios de pago]</span></p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="paso__num" aria-hidden="true">3</span>
+          <div class="paso__texto">
+            <h3>Llegas a Alcohuaz</h3>
+            <p>A unos 120 km de La Serena (cerca de 2 h 30 min en auto) y a 13 km de Pisco Elqui. El último tramo es de montaña y con curvas.</p>
+            <img class="mapa-ruta" src="assets/img/mapa-ruta.svg" alt="Ruta de La Serena a Vicuña, Pisco Elqui y Alcohuaz" width="600" height="220" loading="lazy">
+            <div class="botones-mapa">
+              <a class="boton-secundario" href="https://maps.google.com/?cid=9012979517683832077" target="_blank" rel="noopener">Abrir en Google Maps</a>
+              <a class="boton-secundario" href="https://waze.com/ul?ll=-30.2301642,-70.4916899&amp;navigate=yes" target="_blank" rel="noopener">Abrir en Waze</a>
+            </div>
+            <p>En verano, los tours parten a las 21:45. <span class="pendiente">[punto de encuentro y horario de invierno: Mako confirma]</span></p>
+          </div>
+        </li>
+        <li class="paso">
+          <span class="paso__num" aria-hidden="true">4</span>
+          <div class="paso__texto">
+            <h3>Vives la noche</h3>
+            <p>Entre 60 y 90 minutos: primero a simple vista y después por el telescopio. Ven abrigado: de noche hace cerca de 10 °C en verano y 4 °C en invierno. Si hay Luna, trae el celular para fotografiarla.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="como__clima">
+        <h3>¿Y si el cielo no está en condiciones?</h3>
+        <p>Se hace devolución del 100%. <span class="pendiente">[¿o se puede reagendar?]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRECIO, QUÉ INCLUYE Y CONDICIONES ============
+       Precios de referencia: publicados por La Tercera en febrero de 2024 (no hay datos más recientes). Mako confirma los de esta temporada. -->
+  <section class="seccion seccion--dia" id="reservar">
+    <div class="contenedor">
+      <h2>Precio y qué incluye</h2>
+
+      <div class="precios">
+        <div class="precio-item">
+          <span class="precio-item__monto">$15.000</span>
+          <span class="precio-item__quien">Adultos</span>
+        </div>
+        <div class="precio-item">
+          <span class="precio-item__monto">$13.000</span>
+          <span class="precio-item__quien">Niños hasta 12 años</span>
+        </div>
+      </div>
+      <p class="nota">Por persona, en pesos chilenos. <span class="pendiente">[Precios publicados en febrero de 2024: Mako confirma los de esta temporada]</span></p>
+
+      <div class="incluye">
+        <div class="incluye__col">
+          <h3>Incluye</h3>
+          <ul>
+            <li>El tour guiado de 60 a 90 minutos</li>
+            <li>Observación a simple vista, con puntero láser</li>
+            <li>Observación por telescopio en las cúpulas</li>
+            <li>Explicaciones en español y/o inglés</li>
+          </ul>
+        </div>
+        <div class="incluye__col incluye__col--no">
+          <h3>No incluye</h3>
+          <ul>
+            <li>Traslado hasta Alcohuaz</li>
+            <li>Comida y bebidas</li>
+            <li>Ropa de abrigo</li>
+          </ul>
+          <p><span class="pendiente">[Mako confirma]</span></p>
+        </div>
+      </div>
+
+      <h3 class="subtitulo">Condiciones</h3>
+      <!-- Borrador: Mako debe aprobar la redacción exacta -->
+      <ul class="condiciones">
+        <li>Se reserva con el pago del 100%: los grupos son reducidos y el cupo queda reservado solo para ti.</li>
+        <li>Si el cielo lo permite, el tour se hace. Si el clima no deja, te devuelvo el dinero. <span class="pendiente">[¿o se reagenda?]</span></li>
+        <li>Si cancelas o no llegas, el pago no se devuelve.</li>
+        <li><span class="pendiente">[norma sobre alcohol, por respeto al grupo]</span></li>
+      </ul>
+
+      <!-- Llamado a reservar después de ver precio y condiciones -->
+      <div class="precio__cta">
+        <a class="boton-reserva" href="#formulario-reserva">Reserva</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONFIANZA: va justo después del precio, que es cuando aparece la duda de pagar el 100% por adelantado ============ -->
+  <section class="seccion confianza" id="confianza">
+    <div class="contenedor">
+      <h2>Reserva con tranquilidad</h2>
+      <ul class="tranquilidad">
+        <li>Si el cielo no está en condiciones, se hace devolución del 100%.</li>
+        <li>Reservas hablando directo con Mako, el dueño del observatorio.</li>
+        <li>Precio y condiciones claros desde el principio: lo que ves aquí es lo que pagas.</li>
+      </ul>
+
+      <div class="prensa">
+
+        <!-- Cifras grandes: se entienden en un segundo. Los años se calculan solos desde 2010. -->
+        <ul class="cifras">
+          <li><span class="cifra" data-anios-desde="2010">16</span><span class="cifra__texto">años mirando este cielo</span></li>
+          <li><span class="cifra">4,5<span class="cifra__estrella" aria-hidden="true">★</span></span><span class="cifra__texto">en Google y Tripadvisor</span></li>
+          <li><span class="cifra">84</span><span class="cifra__texto">opiniones de visitantes</span></li>
+        </ul>
+
+        <p class="prensa__titulo">Nos han destacado</p>
+        <!-- Logos oficiales pasados a crema. Originales (en color) en la carpeta del proyecto: logos-prensa-originales.
+             Titulares basados en el título de cada nota; las frases entre comillas están copiadas textuales. -->
+        <ul class="medios">
+          <li>
+            <a class="medio" href="https://www.skyatnightmagazine.com/space-science/a-guide-to-chiles-best-stargazing-sites" target="_blank" rel="noopener" aria-label="Leer nota en BBC Sky at Night Magazine (se abre en otra pestaña)">
+              <img class="logo-prensa logo-prensa--sky" src="assets/img/prensa/sky-at-night.svg" alt="" width="194" height="16" loading="lazy">
+              <span class="medio__logro">Entre los 17 mejores lugares para ver estrellas en Chile</span>
+              <q class="medio__cita" lang="en">this tiny village is home to Cielo Sur Observatorio</q>
+            </a>
+          </li>
+          <li>
+            <a class="medio" href="https://www.latercera.com/finde/noticia/6-observatorios-y-tours-astronomicos-ideales-para-ver-las-estrellas-en-el-valle-del-elqui/" target="_blank" rel="noopener" aria-label="Leer nota en La Tercera (se abre en otra pestaña)">
+              <img class="logo-prensa logo-prensa--tercera" src="assets/img/prensa/la-tercera.svg" alt="" width="136" height="24" loading="lazy">
+              <span class="medio__logro">Uno de los 6 observatorios ideales del Valle del Elqui</span>
+              <q class="medio__cita">un aficionado a la astronomía instaló en 2010 el Observatorio Cielo Sur</q>
+            </a>
+          </li>
+          <li>
+            <a class="medio" href="https://chile.travel/atractivos/alcohuaz-y-cochiguaz/" target="_blank" rel="noopener" aria-label="Leer nota en Chile.travel (se abre en otra pestaña)">
+              <img class="logo-prensa logo-prensa--chiletravel" src="assets/img/prensa/chile-travel.svg" alt="" width="41" height="56" loading="lazy">
+              <span class="medio__logro">Recomendado por el sitio oficial de turismo de Chile</span>
+              <q class="medio__cita">Sus cielos, de los más despejados del planeta, son una ventana al universo</q>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Opiniones reales, copiadas textuales (Tripadvisor y Google). -->
+        <div class="opiniones-cortas">
+          <figure>
+            <blockquote><p>…al ser un grupo pequeño puedes analizar todo con tranquilidad sin ningún apuro.</p></blockquote>
+            <figcaption>Romi, Tripadvisor</figcaption>
+          </figure>
+          <figure>
+            <blockquote><p>El lugar era maravilloso, cero contaminación lumínica, muy simpático el guía, responde todas tus dudas y explica todo con claridad.</p></blockquote>
+            <figcaption>Gaspar Y., Tripadvisor</figcaption>
+          </figure>
+          <figure>
+            <blockquote><p>Muy linda experiencia, el guía muy simpático y amable, una experiencia para recordar</p></blockquote>
+            <figcaption>Claudio Romero, Google</figcaption>
+          </figure>
+        </div>
+
+        <p class="opiniones-enlaces">Lee todas las opiniones en <a href="https://maps.google.com/?cid=9012979517683832077" target="_blank" rel="noopener">Google</a> y en <a href="https://www.tripadvisor.cl/Attraction_Review-g2539653-d7162421-Reviews-Cielo_Sur_Observatory-Paihuano_Coquimbo_Region.html" target="_blank" rel="noopener">Tripadvisor</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CIERRE + CONTACTO ============ -->
+  <section class="seccion cierre" id="contacto">
+    <div class="contenedor">
+      <h2>Hay cosas que una pantalla no te puede mostrar. Ven a mirarlas con tus propios ojos.</h2>
+
+      <!-- ============ FORMULARIO DE RESERVA ============
+           El botón "Reserva" de toda la página trae hasta aquí. Al enviar se abre WhatsApp con el mensaje ya armado
+           (o el correo, como plan B). No es una reserva automática: Mako confirma la disponibilidad.
+           Número de WhatsApp, correo y precios se cambian en un solo lugar: al inicio de la parte 5 de assets/js/main.js
+
+           SERVICIO DE FORMULARIO: este formulario NO está conectado a ningún servicio externo (ni Formspree ni otro).
+           Funciona solo, abriendo WhatsApp o el correo de la persona. Si el dueño quiere recibir las reservas en un
+           servicio propio (por ejemplo Formspree, con su propia cuenta), se agrega aquí: action="https://formspree.io/f/SU-CODIGO"
+           y method="POST" en la etiqueta <form>, y se quita el envío por WhatsApp de la parte 5 de main.js. -->
+      <form class="reserva" id="formulario-reserva" novalidate>
+        <h3 class="reserva__titulo">Reserva tu noche</h3>
+
+        <div class="reserva__campo">
+          <label for="r-fecha">¿Qué fecha te gustaría?</label>
+          <input id="r-fecha" name="fecha" type="date" required>
+          <label class="reserva__check"><input type="checkbox" name="flexible" id="r-flexible"> Tengo flexibilidad de fechas</label>
+          <p class="reserva__error" hidden>Elige una fecha, aunque sea aproximada.</p>
+        </div>
+
+        <fieldset class="reserva__campo">
+          <legend>¿Cuántas personas?</legend>
+          <div class="contador">
+            <span class="contador__nombre" id="r-adultos-nombre">Adultos</span>
+            <button type="button" class="contador__boton" data-cambiar="r-adultos" data-paso="-1" aria-label="Un adulto menos">−</button>
+            <input class="contador__valor" id="r-adultos" name="adultos" type="number" min="0" max="9" value="2" inputmode="numeric" aria-labelledby="r-adultos-nombre">
+            <button type="button" class="contador__boton" data-cambiar="r-adultos" data-paso="1" aria-label="Un adulto más">+</button>
+          </div>
+          <div class="contador">
+            <span class="contador__nombre" id="r-ninos-nombre">Niños hasta 12 años</span>
+            <button type="button" class="contador__boton" data-cambiar="r-ninos" data-paso="-1" aria-label="Un niño menos">−</button>
+            <input class="contador__valor" id="r-ninos" name="ninos" type="number" min="0" max="9" value="0" inputmode="numeric" aria-labelledby="r-ninos-nombre">
+            <button type="button" class="contador__boton" data-cambiar="r-ninos" data-paso="1" aria-label="Un niño más">+</button>
+          </div>
+          <p class="reserva__error" hidden>Los grupos son de 1 a 9 personas.</p>
+        </fieldset>
+
+        <fieldset class="reserva__campo">
+          <legend>¿En qué idioma?</legend>
+          <div class="opciones">
+            <label class="opcion"><input type="radio" name="idioma" value="español" checked><span>Español</span></label>
+            <label class="opcion"><input type="radio" name="idioma" value="inglés"><span lang="en">English</span></label>
+          </div>
+        </fieldset>
+
+        <div class="reserva__campo">
+          <label for="r-nombre">Tu nombre</label>
+          <input id="r-nombre" name="nombre" type="text" autocomplete="name" required>
+          <p class="reserva__error" hidden>Escribe tu nombre.</p>
+        </div>
+
+        <div class="reserva__campo">
+          <label for="r-nota">¿Algo que Mako deba saber? <span class="opcional">(opcional)</span></label>
+          <textarea id="r-nota" name="nota" rows="2" placeholder="Ej.: vamos con un niño de 6 años"></textarea>
+        </div>
+
+        <p class="reserva__total" aria-live="polite">Total referencial: <strong id="r-total">$30.000</strong></p>
+        <p class="reserva__pendiente"><span class="pendiente">[Total con precios de 2024: se actualiza cuando Mako confirme los de esta temporada]</span></p>
+
+        <button class="boton-whatsapp reserva__enviar" id="whatsapp-cierre" type="submit">
+          <svg aria-hidden="true"><use href="#icono-whatsapp"/></svg>Enviar por WhatsApp
+        </button>
+        <button class="reserva__correo" type="button" id="r-correo" disabled>Prefiero que me escriban por correo</button>
+        <p class="reserva__pendiente"><span class="pendiente">[Correo de Mako]</span></p>
+
+        <p class="reserva__aviso">No es una reserva automática: Mako te confirma la disponibilidad por WhatsApp.</p>
+      </form>
+      <noscript><p><a class="boton-whatsapp" href="https://wa.me/56971387080">Escribir a Mako por WhatsApp</a></p></noscript>
+    </div>
+  </section>
+
+  <!-- ============ PREGUNTAS FRECUENTES ============ -->
+  <section class="seccion seccion--dia" id="preguntas">
+    <div class="contenedor">
+      <h2>Preguntas frecuentes</h2>
+
+      <div class="preguntas">
+        <details>
+          <summary>¿Qué ocurre si el cielo está nublado?</summary>
+          <p>Si el clima no permite hacer el tour, te devuelvo el dinero. <span class="pendiente">[PENDIENTE: confirmar si también se puede reagendar]</span></p>
+        </details>
+        <details>
+          <summary>¿Es necesario tener conocimientos de Astronomía?</summary>
+          <p><span class="pendiente">[PENDIENTE: respuesta de Mako]</span></p>
+        </details>
+        <details>
+          <summary>¿Pueden participar niños? ¿Existe una edad mínima?</summary>
+          <p><span class="pendiente">[PENDIENTE: edad mínima; si es apto para adultos mayores]</span></p>
+        </details>
+        <details>
+          <summary>¿Qué temperatura hace en la noche y qué se recomienda llevar?</summary>
+          <p>Trae ropa abrigada. <span class="pendiente">[PENDIENTE: otros ítems que recomienda Mako]</span></p>
+        </details>
+        <details>
+          <summary>¿La luna influye en lo que se puede observar?</summary>
+          <p>Sí. Con luna llena el cielo está más iluminado y los objetos más débiles cuestan más de ver. <span class="pendiente">[PENDIENTE: Mako confirma y cuenta qué muestra en noches de luna]</span></p>
+        </details>
+        <details>
+          <summary>¿El tour se realiza en inglés?</summary>
+          <p>Sí, hago los tours en español y en inglés. Cuando me escribas, cuéntame en qué idioma lo prefieres. <span class="pendiente">[PENDIENTE: confirmar si sigue haciendo tours en francés]</span></p>
+        </details>
+        <details>
+          <summary>¿Cuáles son los medios de pago?</summary>
+          <p>La reserva se paga completa por adelantado. <span class="pendiente">[PENDIENTE: medios de pago]</span></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DÓNDE ESTAMOS ============ -->
+  <section class="seccion ubicacion-seccion" id="ubicacion">
+    <div class="contenedor">
+      <!-- Mapa de Google con la ubicación de la ficha "Observatorio Cielo Sur". Se carga recién cuando la persona llega aquí (loading=lazy) -->
+      <div class="ubicacion">
+        <h3>Dónde estamos</h3>
+        <p>Alcohuaz, Valle del Elqui, a 13 km de Pisco Elqui.</p>
+        <div class="mapa-google">
+          <iframe src="https://maps.google.com/maps?q=-30.2301642,-70.4916899&amp;z=11&amp;hl=es&amp;output=embed" title="Mapa de Google con la ubicación del Observatorio Cielo Sur en Alcohuaz" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <p class="pie__nombre">Astroturismo Cielo Sur</p>
+    <p>Alcohuaz, Valle del Elqui, Chile</p>
+    <p>Desde 2010</p>
+    <p><span class="pendiente">[CORREO DEL CLIENTE]</span></p>
+    <p><span class="pendiente">[PENDIENTE: Instagram]</span></p>
+    <!-- Selector de idioma: ver la nota en la barra superior -->
+    <nav class="idioma" aria-label="Idioma">
+      <a href="./" lang="es" aria-current="page">ES</a>
+      <a href="en/" lang="en" hreflang="en" data-pendiente title="Versión en inglés: pendiente">EN</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Botón flotante de WhatsApp -->
+<a class="whatsapp-flotante" href="https://wa.me/56971387080?text=Hola%20Mako%2C%20quiero%20reservar%20un%20tour%20de%20observaci%C3%B3n.%0AFecha%3A%20___%0APersonas%3A%20___%0AIdioma%3A%20espa%C3%B1ol" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg aria-hidden="true"><use href="#icono-whatsapp"/></svg>
+</a>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

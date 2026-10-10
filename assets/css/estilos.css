@@ -1,0 +1,801 @@
+/* =========================================================
+   Astroturismo Cielo Sur — estilos
+   Dirección visual A: "El ocular" (la foto de portada se enfoca como en el telescopio).
+   La audacia está solo en la portada. Todo lo demás es sobrio.
+   ========================================================= */
+
+/* ---------- Colores (cambiar aquí y se cambia en todo el sitio) ---------- */
+:root {
+  --azul-noche: #0D1A2A;     /* fondo (kit del logo) */
+  --crema: #F1E7D0;          /* logo, títulos y textos (kit del logo) */
+  --crema-tenue: #ADA99E;    /* textos secundarios: crema al 70% sobre el azul */
+  --linea: rgba(241, 231, 208, 0.16);        /* líneas finas entre secciones */
+  --linea-campo: rgba(241, 231, 208, 0.38);  /* borde de los campos del formulario */
+  --verde-whatsapp: #25D366; /* botón de WhatsApp */
+  --rojo-linterna: #E3876B;  /* solo errores del formulario */
+  --pendiente: #F5C451;      /* marcador temporal: se elimina antes de publicar */
+
+  --letra-titulos: "Spectral", Georgia, "Times New Roman", serif;
+  --letra-texto: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Colores según el fondo: la sección de día los cambia */
+  --texto: var(--crema);
+  --texto-tenue: var(--crema-tenue);
+  --fondo-foto: rgba(241, 231, 208, 0.05);
+
+  --margen-lateral: 16px;
+  --ancho-lectura: 38rem;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--azul-noche);
+  color: var(--crema);
+  font-family: var(--letra-texto);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+h1, h2 {
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.1rem, 8vw, 3.4rem); }
+h2 { font-size: clamp(1.75rem, 6.5vw, 2.5rem); }
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 0.35rem;
+}
+
+p { margin: 0 0 1rem; }
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+.contenedor {
+  max-width: var(--ancho-lectura);
+  margin: 0 auto;
+  padding: 0 var(--margen-lateral);
+}
+
+.nota { color: var(--texto-tenue); font-size: 0.95rem; }
+
+/* Marcador de datos pendientes: bien visible para que nada se escape en la revisión */
+.pendiente {
+  background: var(--pendiente);
+  color: var(--azul-noche);
+  font-family: var(--letra-texto);
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.foto-pendiente {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  margin: 0 0 1.75rem;
+  border: 1px dashed var(--texto-tenue);
+  text-align: center;
+}
+
+/* ---------- Barra superior ---------- */
+.barra {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 var(--margen-lateral);
+  transition: background-color 0.4s ease;
+}
+/* Sobre la portada la barra no se ve (ahí el logo y el idioma van al centro).
+   Al bajar, aparece con fondo azul, el logo compacto y ES / EN. */
+/* Sobre la portada la barra es transparente y solo muestra ES / EN arriba a la derecha.
+   Al bajar, toma fondo azul y aparece el logo compacto (en la portada el logo ya está al centro). */
+.barra__logo { opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; }
+.paso-portada .barra { background: rgba(13, 26, 42, 0.94); box-shadow: 0 1px 0 var(--linea); }
+.paso-portada .barra__logo { opacity: 1; visibility: visible; }
+.barra .idioma a { color: var(--crema); opacity: 0.7; }
+.barra .idioma a[aria-current], .barra .idioma a:hover { opacity: 1; }
+.barra__logo img { width: 118px; height: auto; }
+
+.idioma { display: flex; gap: 0.25rem; }
+.idioma a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--texto-tenue);
+}
+.idioma a[aria-current] { color: var(--crema); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.idioma a:hover { color: var(--crema); }
+
+/* ---------- Portada: foto de fondo, logo al centro, eslogan y botón ---------- */
+.portada {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 72px var(--margen-lateral) 64px;
+  overflow: hidden;
+}
+
+/* La foto ocupa toda la portada, de fondo */
+.portada__foto {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  background: var(--azul-noche);
+}
+.portada__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;   /* encuadre: mantiene el horizonte abajo. Ajustar según la foto real */
+}
+/* Velo azul noche sobre la foto, para que el logo y el texto se lean bien.
+   Abajo se funde con el azul de la página. */
+.portada__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(13, 26, 42, 0.55) 0%,
+    rgba(13, 26, 42, 0.35) 35%,
+    rgba(13, 26, 42, 0.35) 80%,
+    rgba(13, 26, 42, 0.85) 100%);
+}
+
+/* Enfoque: debajo queda la foto borrosa (fija) y encima aparece la nítida.
+   Solo se anima la opacidad, para que funcione fluido incluso en celulares modestos. */
+.portada__foto-borrosa { filter: blur(14px); transform: scale(1.08); }
+.portada__foto.enfocando .portada__foto-nitida { animation: enfocado 2.8s cubic-bezier(.6, 0, .35, 1) 0.4s both; }
+@keyframes enfocado { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .portada__foto.enfocando .portada__foto-nitida { animation: none; }
+}
+
+.portada__contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Logo al centro, tamaño mediano */
+.portada__logo { width: min(56vw, 230px); height: auto; margin: 0 0 1.75rem; }
+.portada h1 { font-size: clamp(1.9rem, 7.4vw, 3rem); max-width: 16ch; margin-bottom: 0.4rem; }
+.portada__eslogan-en { margin: 0; font-family: var(--letra-titulos); font-weight: 300; font-size: 1.15rem; color: var(--crema); opacity: 0.75; }
+/* Botón de reserva en la portada: transparente, con borde crema. 44 px de alto, cómodo para el dedo */
+.portada__reserva, .boton-reserva {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  min-width: 160px;
+  min-height: 44px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  color: var(--crema);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--crema);
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+.portada__reserva:hover, .portada__reserva:focus-visible, .boton-reserva:hover, .boton-reserva:focus-visible { background: rgba(241, 231, 208, 0.12); }
+/* ---------- Formulario de reserva ----------
+   Alternativas en botones grandes (cómodas para el pulgar). Al llegar desde un botón "Reserva", deja espacio para la barra. */
+.reserva {
+  scroll-margin-top: 72px;
+  margin: 0 0 1rem;
+  padding: 1.5rem 1.1rem;
+  border: 1px solid var(--linea-campo);
+  border-radius: 6px;
+  text-align: left;
+}
+.reserva__titulo { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.6rem; margin: 0 0 1.25rem; text-align: center; }
+.reserva__campo { margin: 0 0 1.4rem; padding: 0; border: 0; }
+.reserva__campo > label, .reserva__campo > legend { display: block; font-weight: 700; margin: 0 0 0.5rem; padding: 0; }
+.reserva input[type="date"], .reserva input[type="text"], .reserva textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--crema);
+  background: rgba(241, 231, 208, 0.06);
+  border: 1px solid var(--linea-campo);
+  border-radius: 4px;
+  color-scheme: dark;
+}
+.reserva input:focus, .reserva textarea:focus { outline: 2px solid var(--crema); outline-offset: 1px; }
+.reserva textarea::placeholder { color: var(--texto-tenue); opacity: 1; }
+.reserva__campo > .reserva__check { font-weight: 400; }
+.reserva__check { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.75rem; min-height: 44px; font-weight: 400; cursor: pointer; }
+.reserva__check input { width: 22px; height: 22px; accent-color: var(--crema); }
+.reserva__error { margin: 0.4rem 0 0; color: var(--rojo-linterna); font-size: 0.95rem; }
+.reserva__campo--error input[type="date"], .reserva__campo--error input[type="text"] { border-color: var(--rojo-linterna); }
+
+/* Contadores de personas: − número + */
+.contador { display: grid; grid-template-columns: 1fr 44px 52px 44px; align-items: center; gap: 0.4rem; padding: 0.35rem 0; }
+.contador__nombre { font-size: 1rem; }
+.contador__boton {
+  width: 44px; height: 44px;
+  font: inherit; font-size: 1.4rem; line-height: 1;
+  color: var(--crema); background: transparent;
+  border: 1px solid var(--linea-campo); border-radius: 50%;
+  cursor: pointer;
+}
+.contador__boton:hover { border-color: var(--crema); }
+.contador__valor {
+  width: 52px; height: 44px; text-align: center;
+  font: inherit; font-size: 1.2rem; font-weight: 700;
+  color: var(--crema); background: transparent; border: 0;
+  -moz-appearance: textfield;
+}
+.contador__valor::-webkit-inner-spin-button, .contador__valor::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Idioma: dos botones; el elegido queda relleno en crema */
+.opciones { display: flex; gap: 0.75rem; }
+.opcion { flex: 1; position: relative; cursor: pointer; }
+.opcion input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opcion span {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0.5rem;
+  font-weight: 700;
+  border: 1px solid var(--linea-campo); border-radius: 4px;
+}
+.opcion input:checked + span { background: var(--crema); color: var(--azul-noche); border-color: var(--crema); }
+.opcion input:focus-visible + span { outline: 2px solid var(--crema); outline-offset: 2px; }
+
+.reserva__total { margin: 0.5rem 0 0.25rem; font-size: 1.05rem; text-align: center; }
+.reserva__total strong { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.6rem; margin-left: 0.3rem; }
+.reserva__pendiente { margin: 0.25rem 0 1rem; text-align: center; font-size: 0.9rem; }
+.reserva__enviar { width: 100%; border: 0; cursor: pointer; font: inherit; font-weight: 700; font-size: 1.05rem; }
+.reserva__correo {
+  display: block; width: 100%; min-height: 44px; margin-top: 0.5rem;
+  font: inherit; color: var(--crema); background: none; border: 0;
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
+  cursor: pointer;
+}
+.reserva__aviso { margin: 1rem 0 0; font-size: 0.9rem; color: var(--texto-tenue); text-align: center; }
+
+.portada__aviso { position: absolute; left: var(--margen-lateral); bottom: 12px; z-index: 1; margin: 0; font-size: 0.85rem; }
+
+/* Entrada: la frase que dice qué es y dónde, justo después de la portada */
+.entrada { padding: 3.5rem 0 4rem; text-align: center; }
+.entrada h2 { margin: 0 0 0.6rem; }
+/* Presentación pequeña sobre el título (qué es y dónde) */
+.entrada__presentacion { margin: 0 0 0.6rem; font-size: 0.95rem; color: var(--texto-tenue); }
+.entrada h2 + .momentos { margin-top: 2.5rem; }
+.entrada__bajada { margin: 0 0 2.5rem; color: var(--texto-tenue); font-size: 1.05rem; }
+
+/* La noche en tres momentos: cada uno con su propia forma, para que no sean tarjetas iguales.
+   Texto alineado a la izquierda, como una historia que avanza. */
+.momentos { list-style: none; margin: 0; padding: 0; display: grid; gap: 3.5rem; text-align: left; }
+.momento__numero { display: block; font-family: var(--letra-titulos); font-weight: 300; font-size: 1.1rem; color: var(--texto-tenue); margin-bottom: 0.1rem; }
+.momento h3 { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.5rem; margin: 0 0 0.4rem; }
+.momento p { margin: 0; max-width: 26rem; color: var(--crema); }
+
+/* 1. Imagen ancha, de borde a borde en el celular */
+.momento__foto { position: relative; margin: 0 calc(-1 * var(--margen-lateral)) 1.25rem; aspect-ratio: 16 / 10; overflow: hidden; background: var(--fondo-foto); }
+.momento__foto img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 2. Imagen dentro de un círculo, como vista por el ocular (el mismo círculo fino del logo) */
+.momento__ocular { margin: 0 0 1.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+.momento__circulo { display: block; width: min(78vw, 300px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--crema); background: var(--fondo-foto); }
+.momento__circulo img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 60%; }
+.momento--ocular .aviso-ejemplo { position: static; }
+
+/* 3. La Cruz del Sur dibujada directo sobre el fondo, sin recuadro */
+.momento__cruz { display: block; width: 100%; max-width: 420px; height: auto; margin: 1.25rem auto 0; }
+
+/* Aviso sobre las imágenes dibujadas: se quita cuando lleguen las fotos reales */
+.aviso-ejemplo { position: absolute; left: 8px; top: 8px; padding: 0.1rem 0.45rem; font-size: 0.72rem; font-weight: 700; color: var(--azul-noche); background: var(--pendiente); border-radius: 2px; }
+
+/* Frase de cierre: mirar el pasado */
+.entrada__pasado {
+  margin: 3.25rem auto 0;
+  max-width: 26rem;
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.entrada__pendiente { margin: 1rem 0 0; }
+
+/* Lo que pasa esa noche: datos concretos del tour */
+.experiencia strong { font-weight: 700; color: var(--crema); }
+.experiencia__datos { font-family: var(--letra-titulos); font-weight: 300; font-size: 1.35rem; line-height: 1.45; }
+.experiencia__datos strong { font-weight: 400; }
+.experiencia__subtitulo { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.35rem; margin: 2.5rem 0 0.6rem; }
+
+/* Imagen de las cúpulas: de borde a borde en el celular */
+.experiencia__foto { position: relative; margin: 0 calc(-1 * var(--margen-lateral)) 1.25rem; aspect-ratio: 16 / 10; overflow: hidden; background: var(--fondo-foto); }
+.experiencia__foto img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Qué se ve: círculos de ocular que se deslizan con el dedo en el celular */
+.oculares {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 1rem calc(-1 * var(--margen-lateral)) 0.75rem;
+  padding: 0.25rem var(--margen-lateral) 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--margen-lateral);
+  scrollbar-width: none;
+}
+.oculares::-webkit-scrollbar { display: none; }
+.oculares li { flex: 0 0 128px; scroll-snap-align: start; }
+.oculares figure { margin: 0; }
+.ocular-mini { display: block; width: 128px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--crema); background: #04080F; }
+.ocular-mini img { width: 100%; height: 100%; object-fit: cover; }
+.oculares figcaption { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.3; text-align: center; color: var(--crema); }
+.experiencia__para { margin: 1.5rem 0 0; }
+.experiencia .experiencia__lista { margin-top: 1.5rem; }
+.experiencia__cta .experiencia__garantia { margin: 0.9rem 0 0; font-family: var(--letra-texto); font-weight: 400; font-size: 0.95rem; color: var(--texto-tenue); }
+
+/* Temporadas: dos mitades del año, separadas por una línea fina */
+.temporadas { display: grid; grid-template-columns: 1fr 1fr; margin: 1.5rem 0 1rem; border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+.temporada { padding: 1rem 0.9rem 1rem 0; }
+.temporada + .temporada { padding: 1rem 0 1rem 0.9rem; border-left: 1px solid var(--linea); }
+.temporada h4 { margin: 0 0 0.35rem; font-size: 0.9rem; font-weight: 700; color: var(--texto-tenue); }
+.temporada p { margin: 0; font-family: var(--letra-titulos); font-size: 1.1rem; line-height: 1.4; }
+
+.experiencia__lista { list-style: none; margin: 0; padding: 0; }
+.experiencia__lista li { padding: 0.8rem 0; border-top: 1px solid var(--linea); }
+.experiencia__lista li:last-child { border-bottom: 1px solid var(--linea); }
+.experiencia__pendiente { margin: 1.25rem 0 0; }
+
+/* Llamado a reservar después de presentar la experiencia */
+.experiencia__cta { margin-top: 3rem; text-align: center; }
+.experiencia__cta p { margin: 0 0 1rem; font-family: var(--letra-titulos); font-weight: 300; font-size: 1.5rem; }
+
+/* Cómo funciona: los pasos van unidos por una línea fina, cada número dentro de un círculo (como el ocular) */
+.como__bajada { margin: -0.75rem 0 2rem; color: var(--texto-tenue); }
+.pasos-noche { list-style: none; margin: 0; padding: 0; }
+.paso { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 1rem; padding-bottom: 2rem; }
+.paso:not(:last-child)::before { content: ""; position: absolute; left: 21.5px; top: 48px; bottom: 4px; border-left: 1px solid var(--linea-campo); }
+.paso__num {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--texto);
+  font-family: var(--letra-titulos);
+  font-size: 1.25rem;
+}
+.paso__texto h3 { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.3rem; line-height: 1.3; margin: 0.45rem 0 0.4rem; }
+.paso__texto p { margin: 0 0 0.75rem; }
+.paso__texto p:last-child { margin-bottom: 0; }
+/* Mapa dibujado de la ruta: en el celular usa todo el ancho (también la columna de los números) */
+.mapa-ruta { display: block; width: calc(100% + 60px); max-width: none; height: auto; margin: 0.75rem 0 1rem -60px; }
+@media (min-width: 640px) { .mapa-ruta { width: 100%; max-width: 520px; margin-left: 0; } }
+
+/* Dónde estamos: mapa de Google al final de la página */
+.ubicacion { margin-top: 3rem; text-align: left; }
+.ubicacion-seccion .ubicacion { margin-top: 0; }
+.ubicacion h3 { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.5rem; margin: 0 0 0.3rem; }
+.ubicacion p { margin: 0 0 1rem; color: var(--texto-tenue); }
+.mapa-google { width: 100%; aspect-ratio: 4 / 3; border: 1px solid var(--linea-campo); border-radius: 4px; overflow: hidden; background: rgba(241, 231, 208, 0.05); }
+.mapa-google iframe { display: block; width: 100%; height: 100%; border: 0; }
+@media (min-width: 640px) { .mapa-google { aspect-ratio: 16 / 9; } }
+.como__clima { margin-top: 0.5rem; padding: 1.25rem; border: 1px solid var(--linea-campo); border-radius: 4px; }
+.como__clima h3 { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.25rem; margin: 0 0 0.35rem; }
+.como__clima p { margin: 0; }
+
+/* Precio: dos montos grandes, uno al lado del otro */
+.precios { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.5rem 0 0.75rem; }
+.precio-item { display: flex; flex-direction: column; padding: 1rem 0; border-top: 1px solid var(--linea); }
+.precio-item__monto { font-family: var(--letra-titulos); font-weight: 300; font-size: clamp(2.2rem, 10vw, 3rem); line-height: 1.05; }
+.precio-item__quien { margin-top: 0.3rem; font-size: 0.9rem; color: var(--texto-tenue); }
+
+/* Qué incluye y qué no: en el celular una lista bajo la otra; en pantallas más anchas, dos columnas */
+.incluye { display: grid; gap: 1.5rem; margin: 2rem 0 0.5rem; }
+.incluye h3 { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.3rem; margin: 0 0 0.5rem; }
+.incluye ul { list-style: none; margin: 0; padding: 0; }
+.incluye li { position: relative; padding: 0.55rem 0 0.55rem 1.4rem; border-top: 1px solid var(--linea); }
+.incluye li::before { content: "+"; position: absolute; left: 0.1rem; top: 0.5rem; font-weight: 700; }
+.incluye__col--no li::before { content: "−"; }
+.incluye__col--no li { color: var(--texto-tenue); }
+.incluye__col p { margin: 0.6rem 0 0; }
+@media (min-width: 640px) { .incluye { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+
+/* Botón Reserva sobre fondo crema: azul en vez de crema */
+.seccion--dia .boton-reserva { color: var(--azul-noche); border-color: var(--azul-noche); }
+.seccion--dia .boton-reserva:hover, .seccion--dia .boton-reserva:focus-visible { background: rgba(13, 26, 42, 0.08); }
+.precio__cta { margin-top: 2.5rem; text-align: center; }
+
+/* Bloque de confianza: va justo antes de Cómo reservar */
+.confianza { text-align: center; }
+.confianza .prensa { margin-top: 3rem; }
+/* Reserva con tranquilidad: tres respuestas al miedo de pagar por adelantado. Cada una con un circulito fino (como el ocular) */
+.tranquilidad { list-style: none; margin: 0 auto; padding: 0; max-width: 30rem; text-align: left; }
+.tranquilidad li {
+  position: relative;
+  padding: 0.9rem 0 0.9rem 2rem;
+  border-top: 1px solid var(--linea);
+  font-family: var(--letra-titulos);
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.tranquilidad li:last-child { border-bottom: 1px solid var(--linea); }
+.tranquilidad li::before { content: ""; position: absolute; left: 0.2rem; top: 1.3rem; width: 12px; height: 12px; border-radius: 50%; border: 1px solid var(--crema); }
+
+/* ---------- Botones ---------- */
+.boton-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 54px;
+  padding: 0.85rem 1.6rem;
+  background: var(--verde-whatsapp);
+  color: var(--azul-noche);          /* azul sobre verde: contraste 8,9 a 1 */
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.boton-whatsapp svg { width: 22px; height: 22px; flex: none; }
+.boton-whatsapp:hover { filter: brightness(1.06); }
+
+.boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.7rem 1.25rem;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--linea-campo);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.boton-secundario:hover { border-color: currentColor; }
+
+.enlace { text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+/* ---------- Secciones ---------- */
+/* De noche (azul) lo que se siente; de día (crema) lo que se planifica */
+.seccion--dia {
+  background: var(--crema);
+  color: var(--azul-noche);
+  --texto: var(--azul-noche);
+  --texto-tenue: #51585C;                     /* azul noche al 70% sobre crema: contraste 5,9 a 1 */
+  --linea: rgba(13, 26, 42, 0.16);
+  --linea-campo: rgba(13, 26, 42, 0.38);
+  --fondo-foto: rgba(13, 26, 42, 0.07);
+}
+.seccion--dia .pendiente { outline: 1px solid rgba(13, 26, 42, 0.35); }
+.foto--dia { background: var(--crema); --fondo-foto: rgba(13, 26, 42, 0.07); }
+
+.seccion {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--linea);
+}
+
+/* Fotos: van de borde a borde en el celular. Solo material real de Mako. */
+.foto { margin: 0; overflow: hidden; }
+.foto img { width: 100%; height: 100%; object-fit: cover; }
+.foto--completa { aspect-ratio: 4 / 5; }
+.foto--apaisada { aspect-ratio: 3 / 2; }
+.foto--retrato { aspect-ratio: 4 / 5; margin: 0 0 1.75rem; }
+.foto .foto-pendiente { height: 100%; margin: 0; border: 0; background: var(--fondo-foto); }
+.foto + .seccion { border-top: 0; }
+@media (min-width: 900px) {
+  .foto--completa { aspect-ratio: 16 / 9; max-height: 85vh; width: 100%; }
+  .foto--retrato { max-width: var(--ancho-lectura); margin: 0 auto 1.75rem; }
+}
+
+/* La experiencia: tres frases cortas separadas por líneas finas, sin tarjetas ni íconos */
+.rasgos { list-style: none; margin: 0; padding: 0; }
+.rasgos li { padding: 1rem 0; border-top: 1px solid var(--linea); font-size: 1.15rem; }
+.rasgos li:last-child { border-bottom: 1px solid var(--linea); }
+
+/* Reseñas: cada una junto a la duda que responde */
+.resena { margin: 2.5rem 0 0; }
+.resena blockquote {
+  margin: 0;
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.45;
+}
+.resena blockquote p { margin: 0 0 0.6rem; }
+.resena figcaption { font-size: 0.95rem; color: var(--texto-tenue); }
+
+/* ---------- Confianza: cifras, medios y opiniones ----------
+   Va justo después de la frase de entrada. Todo es real; nada es decorativo. */
+.prensa { margin-top: 2.75rem; }
+
+/* Cifras grandes */
+.cifras {
+  list-style: none;
+  margin: 0 0 3rem;
+  padding: 1.75rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  border-top: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+}
+.cifras li { display: flex; flex-direction: column; align-items: center; }
+.cifra {
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 12vw, 3.6rem);
+  line-height: 1;
+  color: var(--crema);
+}
+.cifra__estrella { font-size: 0.45em; vertical-align: 0.9em; margin-left: 0.08em; }
+.cifra__texto { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.3; color: var(--texto-tenue); max-width: 9rem; }
+
+.prensa__titulo {
+  margin: 0 0 1.25rem;
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: 1.35rem;
+  color: var(--crema);
+}
+
+/* Cada medio: logo, lo que dijo (titular) y una frase textual de la nota */
+.medios { list-style: none; margin: 0; padding: 0; }
+.medios li + li { border-top: 1px solid var(--linea); }
+.medio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 0.5rem;
+  text-decoration: none;
+  color: var(--crema);
+}
+.medio__logro {
+  font-family: var(--letra-titulos);
+  font-size: 1.2rem;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.medio__cita { font-size: 0.85rem; line-height: 1.45; color: var(--texto-tenue); max-width: 22rem; }
+.medio__cita::before { content: "“"; }
+.medio__cita::after { content: "”"; }
+.medio:hover .medio__logro { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+
+.logo-prensa { width: auto; max-width: 100%; object-fit: contain; }
+.logo-prensa--tercera { height: 24px; }
+.logo-prensa--sky { height: 16px; }
+.logo-prensa--chiletravel { height: 56px; }
+
+/* Opiniones de visitantes */
+.opiniones-cortas {
+  margin-top: 2.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--linea);
+  display: grid;
+  gap: 1.75rem;
+}
+.opiniones-cortas figure { margin: 0; }
+.opiniones-cortas blockquote { margin: 0; }
+.opiniones-cortas blockquote p {
+  margin: 0 0 0.4rem;
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+.opiniones-cortas blockquote p::before { content: "“"; }
+.opiniones-cortas blockquote p::after { content: "”"; }
+.opiniones-cortas figcaption { font-size: 0.85rem; color: var(--texto-tenue); }
+.opiniones-enlaces { margin: 2rem 0 0; font-size: 0.9rem; color: var(--texto-tenue); }
+.opiniones-enlaces a { color: var(--crema); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+@media (min-width: 900px) {
+  .entrada .contenedor, .confianza .contenedor { max-width: 62rem; }
+  /* computador: ya no van en 3 columnas; cada momento tiene su composición */
+  .momentos { gap: 5rem; }
+  .momento__foto { margin: 0 0 1.5rem; aspect-ratio: 21 / 9; border-radius: 4px; }
+  .momento--ocular, .momento--cielo { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; }
+  .momento__ocular { margin: 0; }
+  .momento__circulo { width: 340px; }
+  .momento__cruz { margin: 0; justify-self: center; }
+  .experiencia__foto { margin: 0 0 1.5rem; aspect-ratio: 21 / 9; border-radius: 4px; }
+  .oculares { margin: 1.25rem 0 0.75rem; padding: 0; overflow: visible; justify-content: space-between; }
+  .experiencia .contenedor { max-width: 52rem; }
+  .oculares li { flex: 0 0 148px; }
+  .ocular-mini { width: 100%; }
+  .medios { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .medios li + li { border-top: 0; border-left: 1px solid var(--linea); }
+  .medio { padding: 0.5rem 1.5rem; height: 100%; }
+  .opiniones-cortas { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+}
+
+/* Tu noche, en orden */
+.noche { list-style: none; margin: 2rem 0 0; padding: 0; }
+.noche li { padding: 1.25rem 0; border-top: 1px solid var(--linea); }
+.noche li:last-child { border-bottom: 1px solid var(--linea); }
+.noche p { margin: 0 0 0.75rem; }
+.noche p:last-child { margin-bottom: 0; }
+.botones-mapa { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0.25rem 0 0.75rem; }
+
+@media (min-width: 640px) {
+  .noche li { display: grid; grid-template-columns: 11rem 1fr; gap: 1.5rem; }
+  .noche li > h3 { margin: 0; }
+  .noche li > :not(h3) { grid-column: 2; }
+}
+
+/* Cómo reservar: aquí sí hay números, porque es una secuencia real */
+.pasos { list-style: none; counter-reset: paso; margin: 0 0 2rem; padding: 0; }
+.pasos li {
+  counter-increment: paso;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  align-items: baseline;
+  padding: 0.6rem 0;
+}
+.pasos li::before {
+  content: counter(paso);
+  font-family: var(--letra-titulos);
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.precio { font-weight: 700; margin-bottom: 0.25rem; }
+
+.subtitulo { margin-top: 2.5rem; margin-bottom: 0.75rem; font-family: var(--letra-titulos); font-weight: 400; font-size: 1.3rem; }
+.condiciones { list-style: none; margin: 0; padding: 0; }
+.condiciones li { padding: 0.9rem 0; border-top: 1px solid var(--linea); }
+.condiciones li:last-child { border-bottom: 1px solid var(--linea); }
+
+/* Preguntas frecuentes */
+.preguntas details { border-top: 1px solid var(--linea); }
+.preguntas details:last-child { border-bottom: 1px solid var(--linea); }
+.preguntas summary,
+.correo summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding: 1rem 2.5rem 1rem 0;
+  font-weight: 700;
+}
+.preguntas summary::-webkit-details-marker,
+.correo summary::-webkit-details-marker { display: none; }
+/* signo + dibujado con dos líneas finas; se vuelve − al abrir */
+.preguntas summary::before,
+.preguntas summary::after {
+  content: "";
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.25s ease;
+}
+.preguntas summary::after { transform: rotate(90deg); }
+.preguntas details[open] summary::after { transform: rotate(0deg); }
+.preguntas details p { margin: 0 0 1.25rem; color: var(--texto-tenue); }
+
+/* Cierre */
+.cierre h2 { margin-bottom: 2rem; }
+.correo { margin-top: 1.5rem; }
+.correo summary {
+  display: inline-block;
+  padding: 0.75rem 0;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* Formulario */
+.formulario { margin: 1rem 0 1.5rem; }
+.campo { margin-bottom: 1.25rem; }
+.campo label { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+.opcional { font-weight: 400; color: var(--texto-tenue); }
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  color: var(--crema);
+  background: rgba(241, 231, 208, 0.05);
+  border: 1px solid var(--linea-campo);
+  border-radius: 4px;
+}
+.campo select { appearance: auto; }
+.campo select option { color: #111; }
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus { outline: 2px solid var(--crema); outline-offset: 1px; }
+.campo input::placeholder { color: var(--texto-tenue); opacity: 1; }
+.campo--error input { border-color: var(--rojo-linterna); }
+.campo__error { color: var(--rojo-linterna); font-size: 0.95rem; margin: 0.35rem 0 0; }
+.trampa { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.formulario__estado { margin-top: 1rem; }
+
+/* Pie de página */
+.pie {
+  padding: 3rem 0 7rem; /* espacio abajo para que el botón flotante no tape nada */
+  border-top: 1px solid var(--linea);
+  color: var(--texto-tenue);
+  font-size: 0.95rem;
+}
+.pie p { margin: 0 0 0.3rem; }
+.pie__nombre { color: var(--crema); font-weight: 700; }
+.pie .idioma { margin-top: 1rem; margin-left: -0.75rem; }
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.whatsapp-flotante {
+  position: fixed;
+  right: var(--margen-lateral);
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--verde-whatsapp);
+  color: var(--azul-noche);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.whatsapp-flotante svg { width: 28px; height: 28px; }
+.whatsapp-flotante.visible { opacity: 1; transform: none; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-flotante { transition: none; transform: none; }
+}
+
+/* ---------- Pantallas grandes ---------- */
+@media (min-width: 900px) {
+  :root { --margen-lateral: 32px; }
+  .seccion { padding: 6rem 0; }
+  .portada__logo { width: 250px; }
+  .portada__foto img { object-position: 50% 72%; }  /* en pantalla ancha, el horizonte queda bajo el texto */
+}

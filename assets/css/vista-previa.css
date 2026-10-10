@@ -1,0 +1,22 @@
+/* Solo para la vista previa publicada: franja de aviso arriba.
+   No es parte de la página final. */
+.vista-previa-franja {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--azul-noche);
+  border-bottom: 1px solid rgba(241, 231, 208, 0.15);
+  color: var(--crema);
+  opacity: 0.85;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.barra { inset: 28px 0 auto 0; }
+.reserva { scroll-margin-top: 100px; }
+/* El botón de correo queda apagado hasta tener el correo de Mako */
+.reserva__correo:disabled { opacity: 0.5; cursor: not-allowed; }
