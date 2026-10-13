@@ -132,6 +132,7 @@
           <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-cumulo.svg" alt="Un cúmulo globular: miles de estrellas juntas, visto por el telescopio" width="400" height="400" loading="lazy"></span><figcaption>Un cúmulo globular, el del logo</figcaption></figure></li>
           <li><figure><span class="ocular-mini"><img src="assets/img/ejemplos/ocular-nebulosa.svg" alt="Una nebulosa vista por el telescopio, como una nube suave" width="400" height="400" loading="lazy"></span><figcaption>Una nebulosa</figcaption></figure></li>
       </ul>
+      <p class="oculares__desliza" aria-hidden="true">Desliza para ver más</p>
       <p class="nota"><span class="aviso-ejemplo aviso-ejemplo--texto">Imágenes de ejemplo</span> Por el ocular se ven más pequeñas y en tonos más suaves.</p>
 
       <div class="temporadas">
@@ -183,7 +184,7 @@
           <span class="paso__num" aria-hidden="true">2</span>
           <div class="paso__texto">
             <h3>Pagas y tu cupo queda reservado</h3>
-            <p>El pago es del 100% por adelantado, porque los grupos son reducidos y el cupo queda reservado solo para ti. <span class="pendiente">[medios de pago]</span></p>
+            <p>El pago es del 100% por adelantado. <span class="pendiente">[medios de pago]</span></p>
           </div>
         </li>
         <li class="paso">
@@ -203,21 +204,16 @@
           <span class="paso__num" aria-hidden="true">4</span>
           <div class="paso__texto">
             <h3>Vives la noche</h3>
-            <p>Entre 60 y 90 minutos: primero a simple vista y después por el telescopio. Ven abrigado: de noche hace cerca de 10 °C en verano y 4 °C en invierno. Si hay Luna, trae el celular para fotografiarla.</p>
+            <p>Primero a simple vista y después por el telescopio. Ven abrigado: de noche hace cerca de 10 °C en verano y 4 °C en invierno. Si hay Luna, trae el celular para fotografiarla.</p>
           </div>
         </li>
       </ol>
-
-      <div class="como__clima">
-        <h3>¿Y si el cielo no está en condiciones?</h3>
-        <p>Se hace devolución del 100%. <span class="pendiente">[¿o se puede reagendar?]</span></p>
-      </div>
     </div>
   </section>
 
   <!-- ============ PRECIO, QUÉ INCLUYE Y CONDICIONES ============
        Precios de referencia: publicados por La Tercera en febrero de 2024 (no hay datos más recientes). Mako confirma los de esta temporada. -->
-  <section class="seccion seccion--dia" id="reservar">
+  <section class="seccion seccion--dia seccion--precio" id="reservar">
     <div class="contenedor">
       <h2>Precio y qué incluye</h2>
 
@@ -270,12 +266,18 @@
     </div>
   </section>
 
+  <!-- Pausa visual entre el precio y la confianza, para descansar del texto.
+       ILUSTRACIÓN DE EJEMPLO: se reemplaza por una foto real del cielo de Alcohuaz -->
+  <figure class="pausa-cielo">
+    <img src="assets/img/ejemplos/valle-noche.svg" alt="Ilustración del Valle del Elqui de noche: la Vía Láctea sobre los cerros, las luces de Alcohuaz y las cúpulas del observatorio" width="1600" height="1000" loading="lazy">
+    <figcaption class="aviso-ejemplo">Imagen de ejemplo</figcaption>
+  </figure>
+
   <!-- ============ CONFIANZA: va justo después del precio, que es cuando aparece la duda de pagar el 100% por adelantado ============ -->
   <section class="seccion confianza" id="confianza">
     <div class="contenedor">
       <h2>Reserva con tranquilidad</h2>
       <ul class="tranquilidad">
-        <li>Si el cielo no está en condiciones, se hace devolución del 100%.</li>
         <li>Reservas hablando directo con el Guía, el dueño del observatorio.</li>
         <li>Precio y condiciones claros desde el principio: lo que ves aquí es lo que pagas.</li>
       </ul>
@@ -289,7 +291,7 @@
           <li><span class="cifra">84</span><span class="cifra__texto">opiniones de visitantes</span></li>
         </ul>
 
-        <p class="prensa__titulo">Nos han destacado</p>
+        <h3 class="prensa__titulo">Nos han destacado</h3>
         <!-- Logos oficiales pasados a crema. Originales (en color) en la carpeta del proyecto: logos-prensa-originales.
              Titulares basados en el título de cada nota; las frases entre comillas están copiadas textuales. -->
         <ul class="medios">
@@ -401,7 +403,7 @@
         <p class="reserva__pendiente"><span class="pendiente">[Total con precios de 2024: se actualiza cuando Mako confirme los de esta temporada]</span></p>
 
         <button class="boton-whatsapp reserva__enviar" id="whatsapp-cierre" type="submit">
-          <svg aria-hidden="true"><use href="#icono-whatsapp"/></svg>Enviar por WhatsApp
+          <svg aria-hidden="true"><use href="#icono-whatsapp"/></svg>Enviar esta información por WhatsApp
         </button>
         <button class="reserva__correo" type="button" id="r-correo" disabled>Prefiero que me escriban por correo</button>
         <p class="reserva__pendiente"><span class="pendiente">[Correo de Mako]</span></p>

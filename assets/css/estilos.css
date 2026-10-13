@@ -284,7 +284,9 @@ a { color: inherit; }
 .reserva__total { margin: 0.5rem 0 0.25rem; font-size: 1.05rem; text-align: center; }
 .reserva__total strong { font-family: var(--letra-titulos); font-weight: 400; font-size: 1.6rem; margin-left: 0.3rem; }
 .reserva__pendiente { margin: 0.25rem 0 1rem; text-align: center; font-size: 0.9rem; }
-.reserva__enviar { width: 100%; border: 0; cursor: pointer; font: inherit; font-weight: 700; font-size: 1.05rem; }
+/* Botón compacto en una sola línea: la letra se achica un poco en celulares angostos para que el texto no se corte */
+.boton-whatsapp.reserva__enviar { display: flex; width: auto; margin: 0 auto; min-height: 46px; padding: 0.55rem 1rem; gap: 0.5rem; border: 0; cursor: pointer; font: inherit; font-weight: 700; font-size: min(0.95rem, 3.5vw); white-space: nowrap; }
+.boton-whatsapp.reserva__enviar svg { width: 18px; height: 18px; }
 .reserva__correo {
   display: block; width: 100%; min-height: 44px; margin-top: 0.5rem;
   font: inherit; color: var(--crema); background: none; border: 0;
@@ -364,6 +366,12 @@ a { color: inherit; }
 .oculares::-webkit-scrollbar { display: none; }
 .oculares li { flex: 0 0 128px; scroll-snap-align: start; }
 .oculares figure { margin: 0; }
+/* En celular los círculos se deslizan con el dedo: este aviso lo indica. En pantallas grandes se ven todos y se oculta */
+.oculares__desliza { margin: -0.25rem 0 0.75rem; font-size: 0.9rem; font-weight: 700; text-align: right; color: var(--crema); }
+@media (min-width: 900px) { .oculares__desliza { display: none; } }
+/* Imagen ancha entre secciones, de borde a borde */
+.pausa-cielo { position: relative; margin: 0; background: var(--azul-noche); }
+.pausa-cielo img { display: block; width: 100%; height: clamp(380px, 95vw, 640px); object-fit: cover; object-position: 65% center; }
 .ocular-mini { display: block; width: 128px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--crema); background: #04080F; }
 .ocular-mini img { width: 100%; height: 100%; object-fit: cover; }
 .oculares figcaption { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.3; text-align: center; color: var(--crema); }
@@ -508,6 +516,9 @@ a { color: inherit; }
   --fondo-foto: rgba(13, 26, 42, 0.07);
 }
 .seccion--dia .pendiente { outline: 1px solid rgba(13, 26, 42, 0.35); }
+/* Precio y qué incluye: crema con un 20% de azul noche, para que no se funda con "Cómo funciona".
+   El texto secundario se oscurece para mantener buen contraste (5,3 a 1). */
+.seccion--precio { background: #C3BEAF; --texto-tenue: #3D454B; }
 .foto--dia { background: var(--crema); --fondo-foto: rgba(13, 26, 42, 0.07); }
 
 .seccion {
@@ -572,10 +583,11 @@ a { color: inherit; }
 .cifra__texto { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.3; color: var(--texto-tenue); max-width: 9rem; }
 
 .prensa__titulo {
-  margin: 0 0 1.25rem;
+  margin: 3rem 0 1.25rem;
   font-family: var(--letra-titulos);
-  font-weight: 300;
-  font-size: 1.35rem;
+  font-weight: 400;
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  line-height: 1.2;
   color: var(--crema);
 }
 
